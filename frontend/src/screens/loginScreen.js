@@ -68,7 +68,7 @@ export default function LoginScreen({location, history}) {
                     <Link
                         to={redirect ? `/register?redirect=${redirect}` : '/redirect'}
                     >
-                        Register
+                         Register
                     </Link>
                 </Col>
             </Row>
