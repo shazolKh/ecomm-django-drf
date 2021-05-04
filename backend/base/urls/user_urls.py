@@ -6,4 +6,5 @@ urlpatterns = [
     path('profile/', views.GetUserProfile, name='user_profile'),
     path('', views.GetUsers, name='users'),
     path('register/', views.registerUser, name='register'),
+    path('profile/update/', views.UpdateUserProfile, name='update-profile'),
 ]
