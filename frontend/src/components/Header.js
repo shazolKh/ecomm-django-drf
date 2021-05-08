@@ -18,18 +18,18 @@ export default function Header() {
         <header>
             <Navbar bg="dark" variant={"dark"} expand="lg" collapseOnSelect>
                 <Container>
-                    <LinkContainer to={'/'}>
+                    <LinkContainer to={'/'} style={{textTransform:"uppercase"}}>
                         <Navbar.Brand>Cypher Shop</Navbar.Brand>
                     </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="mr-auto">
+                        <Nav className="mr-auto" style={{textTransform:"uppercase"}}>
                             <LinkContainer to={"/cart"}>
                                 <Nav.Link><i className="fas fa-shopping-cart"/> Cart</Nav.Link>
                             </LinkContainer>
 
                             {userInfo ? (
-                                <NavDropdown id={'username'} title={userInfo.name}>
+                                <NavDropdown id={'username'} title={userInfo.name} style={{textTransform:"uppercase"}}>
                                     <LinkContainer to={'/profile'}>
                                         <NavDropdown.Item>Profile</NavDropdown.Item>
                                     </LinkContainer>
