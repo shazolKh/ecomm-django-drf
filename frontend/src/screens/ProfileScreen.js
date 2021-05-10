@@ -7,7 +7,7 @@ import Message from "../components/Message";
 import {getUserDetails, updateUserProfile} from "../actions/userActions";
 import {USER_UPDATE_PROFILE_RESET} from "../constants/userConstants";
 import {listMyOrder} from "../actions/orderActions";
-import {forEach} from "react-bootstrap/ElementChildren";
+
 
 function ProfileScreen({history}) {
     const [name, setName] = useState('')
@@ -34,7 +34,7 @@ function ProfileScreen({history}) {
         if (!userInfo) {
             history.push('/login')
         } else {
-            if (!user || !user.name || success) {
+            if (!user || !user.name || success || userInfo._id !== user.id) {
                 dispatch({
                     type: USER_UPDATE_PROFILE_RESET
                 })
