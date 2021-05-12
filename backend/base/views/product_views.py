@@ -9,7 +9,7 @@ from base.serializers import ProductSerializer
 
 
 def Delete_image(a):
-    image_path = a.images.path
+    image_path = a.image.path
     if image_path:
         if os.path.exists(image_path):
             os.remove(image_path)
@@ -34,7 +34,8 @@ def GetProducts(request):
 def DeleteProduct(request, pk):
     product = Product.objects.get(_id=pk)
     product.delete()
-    # Delete_image(product)
+    if product.image != '/placeholder.png':
+        Delete_image(product)
     return Response('Product Deleted')
 
 
@@ -60,7 +61,7 @@ def createProduct(request):
 def UpdateProduct(request, pk):
     data = request.data
 
-    product = Product.objects.get(id=pk)
+    product = Product.objects.get(_id=pk)
     product.name = data['name']
     product.price = data['price']
     product.brand = data['brand']
@@ -71,3 +72,16 @@ def UpdateProduct(request, pk):
     product.save()
     serializer = ProductSerializer(product, many=False)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def UploadImage(request):
+    data = request.data
+
+    product_id = data['product_id']
+    product = Product.objects.get(_id=product_id)
+    Delete_image(product)
+    product.image = request.FILES.get('image')
+    product.save()
+
+    return Response(product.image.url)
