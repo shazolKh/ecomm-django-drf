@@ -5,6 +5,9 @@ urlpatterns = [
     path('', views.GetProducts, name='products'),
     path('create/', views.createProduct, name='create-product'),
     path('upload/', views.UploadImage, name='image-upload'),
+
+    path('<str:pk>/reviews/', views.createProductReview, name='create-review'),
+    path('top/', views.getTopProducts, name='top-products'),
     path('<str:pk>/', views.GetProduct, name='product'),
 
     path('delete/<str:pk>/', views.DeleteProduct, name='delete-product'),
